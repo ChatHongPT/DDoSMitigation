@@ -38,7 +38,7 @@
 			 tos : 사용자는 원하는 Type Of Service Flag 가 맞는지 
 				 지정할 수 있다. 
 					tos? : 하단 링크 참고 
-			 <http://www.ktword.co.kr/test/view/view.php?m_temp1=2051>
+<http://www.ktword.co.kr/test/view/view.php?m_temp1=2051>
 				
 
 			 pps : Source IP 마다 필터링 정책 적용 전에 보낼 수 있는 
@@ -66,8 +66,9 @@
 				icmp_enabled : ICMP 필터링 동작 여부 
 				icmp_code : ICMP Code 필터링 
 				icmp_type : ICMP Type 필터링 
-					code & type : 하단 링크 참고 
-	<https://www.iana.org/assignments/icmp-parameters/icmp-parameters.xhtml>
+					code & type : 하단 링크 참고
+     
+<https://www.iana.org/assignments/icmp-parameters/icmp-parameters.xhtml>
 
 ### XDP-FIREWALL Command  
 		a. Config File 위치 강제 조정(-c) 
@@ -92,7 +93,7 @@
 		정책 구성 : 
 			(1) 지정한 Source IP를 제외한 다른 사용자 접근시 XDP_DROP 
 			(2) bps 100, 총 데이터 100Byte 까지만 XDP_PASS
-			![1_1](./img/1_1.jpg)
+![1_1](./img/1_1.jpg)
 				
 		실행 과정 :
 			(1) Host에서 xdpfw docker container(172.17.0.3)로 패킷 전달, -> 차단 
@@ -101,7 +102,7 @@
 			(3) docker container(172.17.0.2)에서 xdpfw docker container(172.17.0.2) 로
 				 data=1000Byte로 TCP 패킷 전달 -> XDP_DROP 
 		결과 이미지:
-				![1_2](./img/1_2.jpg)
+  ![1_2](./img/1_2.jpg)
 	
 #####         예제2
 		목적 : ICMP 패킷은 PASS, TCP 패킷은 DROP, UDP 패킷은 포트번호 50 PASS
@@ -110,7 +111,7 @@
 			(2) TCP 패킷 DROP
 			(3) UDP 패킷 PORT 50 PASS 
 				- port 50번이 아닌 udp 같은 경우에, 표시되지 않는다.
-			![2_1](./img/2_1.jpg)
+![2_1](./img/2_1.jpg)
 	
 		실행 과정 :
 			- From docker container(172.17.0.2) To xdpfw docker container(172.17.0.3)
@@ -119,5 +120,6 @@
 			- (3) UDP port 40 (172.17.0.2) → (172.17.0.3) : Not Monitored 
 			- (4) UDP port 50 (172.17.0.2) → (172.17.0.3) : PASS
 		결과 이미지:
-				![2_2](./img/2_2.jpg)
+				
+![2_2](./img/2_2.jpg)
     
