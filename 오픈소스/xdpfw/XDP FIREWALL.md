@@ -92,7 +92,7 @@
 		정책 구성 : 
 			(1) 지정한 Source IP를 제외한 다른 사용자 접근시 XDP_DROP 
 			(2) bps 100, 총 데이터 100Byte 까지만 XDP_PASS
-			![이미지1](main/오픈소스/xdpfw/1_1.jpg)
+			![이미지1](./img/1_1.jpg)
 				
 		실행 과정 :
 			(1) Host에서 xdpfw docker container(172.17.0.3)로 패킷 전달, -> 차단 
@@ -101,7 +101,7 @@
 			(3) docker container(172.17.0.2)에서 xdpfw docker container(172.17.0.2) 로
 				 data=1000Byte로 TCP 패킷 전달 -> XDP_DROP 
 		결과 이미지:
-				![이미지1](main/오픈소스/xdpfw/1_2.jpg)
+				![이미지1](./img/1_2.jpg)
 	
 #####         예제2
 		목적 : ICMP 패킷은 PASS, TCP 패킷은 DROP, UDP 패킷은 포트번호 50 PASS
@@ -110,7 +110,7 @@
 			(2) TCP 패킷 DROP
 			(3) UDP 패킷 PORT 50 PASS 
 				- port 50번이 아닌 udp 같은 경우에, 표시되지 않는다.
-			![이미지1](main/오픈소스/xdpfw/2_1.jpg)
+			![이미지1](./img//2_1.jpg)
 	
 		실행 과정 :
 			- From docker container(172.17.0.2) To xdpfw docker container(172.17.0.3)
@@ -119,5 +119,5 @@
 			- (3) UDP port 40 (172.17.0.2) → (172.17.0.3) : Not Monitored 
 			- (4) UDP port 50 (172.17.0.2) → (172.17.0.3) : PASS
 		결과 이미지:
-				![이미지1](main/오픈소스/xdpfw/2_2.jpg)
+				![이미지1](./img/2_2.jpg)
     
