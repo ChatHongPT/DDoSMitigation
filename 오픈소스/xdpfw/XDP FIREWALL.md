@@ -1,8 +1,10 @@
-***
 
+***
 
 ### Intro.
 ###### 필터링 규칙을 사용자가 직접 커스터마이징하고 XDP-FIREWALL 명령어를 통해 간편하게 XDP 프로그램을 XDP Hook 에 연결할 수 있으며 최종적으로 실행시킬 수 있다.
+
+***
 #####      command
 		—-config –c : config 파일의 위치를 지정할 수 있다. 
 				( 기본 위치 /etc/xdpfw/xdpfw.conf ) 
@@ -90,7 +92,7 @@
 		정책 구성 : 
 			(1) 지정한 Source IP를 제외한 다른 사용자 접근시 XDP_DROP 
 			(2) bps 100, 총 데이터 100Byte 까지만 XDP_PASS
-			![[main/오픈소스/xdpfw/1_1.jpg]]
+			![[./1_1.jpg]]
 				
 		실행 과정 :
 			(1) Host에서 xdpfw docker container(172.17.0.3)로 패킷 전달, -> 차단 
@@ -99,7 +101,7 @@
 			(3) docker container(172.17.0.2)에서 xdpfw docker container(172.17.0.2) 로
 				 data=1000Byte로 TCP 패킷 전달 -> XDP_DROP 
 		결과 이미지:
-				![[main/오픈소스/xdpfw/1_2.jpg]]
+				![[./1_2.jpg]]
 	
 #####         예제2
 		목적 : ICMP 패킷은 PASS, TCP 패킷은 DROP, UDP 패킷은 포트번호 50 PASS
@@ -108,7 +110,7 @@
 			(2) TCP 패킷 DROP
 			(3) UDP 패킷 PORT 50 PASS 
 				- port 50번이 아닌 udp 같은 경우에, 표시되지 않는다.
-			![[main/오픈소스/xdpfw/2_1.jpg]]
+			![[./2_1.jpg]]
 	
 		실행 과정 :
 			- From docker container(172.17.0.2) To xdpfw docker container(172.17.0.3)
@@ -117,4 +119,4 @@
 			- (3) UDP port 40 (172.17.0.2) → (172.17.0.3) : Not Monitored 
 			- (4) UDP port 50 (172.17.0.2) → (172.17.0.3) : PASS
 		결과 이미지:
-				![[main/오픈소스/xdpfw/캡처2_2.jpg]]
+				![[./캡처2_2.jpg]]
