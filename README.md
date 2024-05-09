@@ -60,7 +60,7 @@ __성원, 정훈__ : 논문 초안 작성<br>
 - 홍석 Routing Around Congestion Defeating DDoS Attacks and Adverse Network Conditions via Reactive BGP Routing __논문 요약 및 번역 완료__
 - 도환 DDoS Mitigation AMeasurement-Based Approach & Understanding the Behaviors of BGP-based DDoS Protection Services __논문 요약 및 번역 완료__
 - 민우 Fast packet processing with ebpf and xdp: Concepts, code, challenges, and applications __논문 요약 및 번역 완료__
-- 정훈 Extended Berkeley Packet Filter: An Application Perspective
+- 정훈 Extended Berkeley Packet Filter: An Application Perspective __논문 요약 및 번역 완료__
 - 도현 An eBPF-XDP hardware-based network slicing architecture for future 6G front to back haul networks
 
 ## 오픈소스 가이드라인 작성
