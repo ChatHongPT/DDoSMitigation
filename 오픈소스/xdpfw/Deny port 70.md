@@ -9,10 +9,10 @@
 		2. if_ether.h ip.h tcp.h 와 같은 각 프로토콜 별 헤더파일에 들어있는 구조체들에 대해 이해한다.
 ###### 코드
 
-![c-code](prog.jpg)
+![c-code](./img/prog.jpg)
 
 ###### 결과
 
-![result](test.jpg)
+![result](./img/test.jpg)
 
 최초 작성일 : 2024-05-10 
