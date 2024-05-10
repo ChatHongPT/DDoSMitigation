@@ -4,7 +4,7 @@
 
 ## Deny TCP port 70
 
-	학습내용 : ethernet header, ip header, TCP header 를 어떻게 표시하는지 학습하며, 각 프로토콜의 기본적인 구조체를 활용하여 TCP 프로토콜의 포트 70번 패킷 진입을 차단한다.
+	학습내용 : ethernet header, ip header, TCP header 를 어떻게 표시하는지 학습하며, 각 프로토콜의 기본적인 구조체를 활용하여 TCP 프로토콜의 포트 70번 패킷 진입을 차단하는 코드를 작성 & 확인한다..
 		1. bpf.h bpf_helpers.h 등 핵심 헤더파일의 역할에 대해 학습한다.
 		2. if_ether.h ip.h tcp.h 와 같은 각 프로토콜 별 헤더파일에 들어있는 구조체들에 대해 이해한다.
 ###### 코드
