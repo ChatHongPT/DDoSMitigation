@@ -12,7 +12,7 @@
 sudo apt-get update
 sudo apt-get install bpfcc-tools linux-headers-$(uname -r)
 ```
-# For Jammy (22.04) - 빌드 종속성이 다르니 https://github.com/iovisor/bcc/blob/master/INSTALL.md#ubuntu---source 참고 (ubuntu에 맞는 버전 설치)
+###### For Jammy (22.04) - 빌드 종속성이 다르니 https://github.com/iovisor/bcc/blob/master/INSTALL.md#ubuntu---source 참고 (ubuntu에 맞는 버전 설치)
 ```
 sudo apt install -y zip bison build-essential cmake flex git libedit-dev \
   libllvm14 llvm-14-dev libclang-14-dev python3 zlib1g-dev libelf-dev libfl-dev python3-setuptools \
