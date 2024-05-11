@@ -5,6 +5,19 @@
 ###### 필터링 규칙을 사용자가 직접 커스터마이징하고 XDP-FIREWALL 명령어를 통해 간편하게 XDP 프로그램을 XDP Hook 에 연결할 수 있으며 최종적으로 실행시킬 수 있다.
 
 ***
+##### setup
+		sudo apt install -y libconfig-dev llvm clang libelf-dev build-essential
+		sudo apt install -y libpcap-dev m4 gcc-multilib
+  		sudo apt install -y linux-tools-$(uname -r)
+    			버전상 오류로 필자는 bpftool을 설치했음
+       		git clone --recursive https://github.com/gamemann/XDP-Firewall.git
+	 	cd XDP-Firewall
+   		make libxdp (단, Makefile 파일 맨 하단에 미리 cp --update=none xdpfw.conf.example /etc/xdpfw/xdpfw.conf 로 바꿔두면 경고 메세지가 뜨지 않는다.)
+		make && sudo make install
+
+  		usage : ./xdpfw
+
+
 #####      command
 		—-config –c : config 파일의 위치를 지정할 수 있다. 
 				( 기본 위치 /etc/xdpfw/xdpfw.conf ) 
