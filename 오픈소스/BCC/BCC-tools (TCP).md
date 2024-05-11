@@ -1,7 +1,7 @@
 
 #####  사용방법
 도구들은 모두 /usr/share/bcc/tools/ 경로상에 있다.
-![[bcc tracing tool.png]]
+![[bcc tracing tool.png]](img/bcc_tracing_tool.png)
 
 ###### 1. **tcpaccept** - TCP 연결이 수락될 때 발생되는 이벤트를 추적한다. 네트워크 서비스의 연결 수락 성능을 분석할 수 있다.
    ex)![[스크린샷 2024-05-11 오후 4.04.16.png]]
