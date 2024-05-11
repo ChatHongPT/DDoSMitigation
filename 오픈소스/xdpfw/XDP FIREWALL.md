@@ -10,7 +10,7 @@
 		sudo apt install -y libpcap-dev m4 gcc-multilib
   		sudo apt install -y linux-tools-$(uname -r)
     			버전상 오류로 필자는 bpftool을 설치했음
-       		git clone --recursive https://github.com/gamemann/XDP-Firewall.git
+       git clone --recursive https://github.com/gamemann/XDP-Firewall.git
 	 	cd XDP-Firewall
    		make libxdp (단, Makefile 파일 맨 하단에 미리 cp --update=none xdpfw.conf.example /etc/xdpfw/xdpfw.conf 로 바꿔두면 경고 메세지가 뜨지 않는다.)
 		make && sudo make install
