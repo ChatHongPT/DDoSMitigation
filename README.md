@@ -64,7 +64,7 @@ __성원, 정훈__ : 논문 초안 작성<br>
 - 도현 An eBPF-XDP hardware-based network slicing architecture for future 6G front to back haul networks __논문 요약 및 번역 완료__
 
 ## 오픈소스 가이드라인 작성
-- zeek: 성원
+- zeek: 성원 (완료)
 - arkime: 정훈
 - bcc: 도현
 - suricata: 성원
