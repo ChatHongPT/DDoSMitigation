@@ -1,7 +1,7 @@
 #### BCC란?
 
 BCC (BPF Compiler Collection) BCC는 Linux 시스템의 성능 모니터링과 네트워크 분석을 위해 설계된 도구다. eBPF(Extended Berkeley Packet Filter)기반으로 하여, 네트워크 패킷 필터링, 시스템 호출 분석, 성능 모니터링 등 다양한 시스템 이벤트에 대한 Linux 커널의 기능이다.
-![Image Description](img/bcc tracing tool.png)
+![bcc tracing tool.png](img/bcc tracing tool.png)
 
 
 
