@@ -3,7 +3,7 @@
 도구들은 모두 /usr/share/bcc/tools/ 경로상에 있다.
 ![](img/bcc_tracing_tool.png)
 
-#### 1. **tcpaccept** - TCP 연결이 수락될 때 발생되는 이벤트를 추적한다. 네트워크 서비스의 연결 수락 성능을 분석할 수 있다.
+#### `1. **tcpaccept** - TCP 연결이 수락될 때 발생되는 이벤트를 추적한다. 네트워크 서비스의 연결 수락 성능을 분석할 수 있다.`
    ex)![](img/tcpaccept.png)
 
 #### 2. **tcpconnlat** - TCP 연결 설정 지연을 측정한다. 지연 시간을 포착하여 네트워크 연결의 성능 문제를 진단할 수 있다.
