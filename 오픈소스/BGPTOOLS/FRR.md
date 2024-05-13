@@ -81,12 +81,12 @@ network <IP주소/서브넷 마스크>
 redistribute <프로토콜>
 ```
 
-**여러 경로를 하나의 경로로 집계하여 전파**
+**여러 경로를 하나의 경로로 집계하여 전파**
 ```
 aggregate-address <IP주소/서브넷 마스크>
 ```
 
-**라우터 맵 및 정책 적용**
+**라우터 맵 및 정책 적용**
 ```
 route-map <name> permit|deny <number>
 ```
