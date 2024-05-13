@@ -55,11 +55,41 @@ OSI 7계층 프로토콜을 모두 지원한다.
 <키워드>;
 ~~~
 
-옵션 목록
-|옵션|의미|예시|
+일반 옵션 목록
+|옵션|의미|사용법|
 |:----:|:----:|:----|
 |msg|메시지|msg:"hello";|
 |noalert|경고를 생성하지 않고 상태를 표시함|noalert;|
 |sid|규칙 고유번호 부여|sid:123;|
-|rev|버전 표시|rev:1;|
+|rev|버전 표시 (수정 시 버전이 올라감)|rev:1;|
+|metadata|key와 value 값이 한 쌍으로 주어진 데이터|metadata: key value, key value;|
+|target|공격의 대상이되는 요소를 지정함|target:[ip 주소];|
+|clastype|이벤트의 분류를 지정함 (classification.conf에 타입명이 있으며 직접 정의하거나 수정할 수 있다.|classtype:분류 이름;|
+|priority|규칙 우선순위 지정 (범위 : 1 ~ 10)|priority:1;|
+|reference|규칙으로 인해 탐지된 이벤트에 대한 추가 정보 제공 (reference.config에 타입명이 있으며 직접 정의하거나 수정정할 수 있다.) |reference:type,reference|
 
+자세한 옵션 목록 : https://docs.suricata.io/en/latest/rules/meta.html
+<br><br><br>
+
+
+
+IP 옵션 목록
+|옵션|의미|사용법|
+|:----:|:----:|:----:|
+|ttl|time to live값 지정|ttl:<number>;|
+|ipopts|IP헤더에 포함된 옵션 검사|ipopts:<name>;|
+|sameip|출발지와 목적지 IP가 같은 경우(Land Attack)|sameip;|
+|ip_proto|해당 패킷에 포함되어있는 프로토콜 검사|ip_proto:<프로토콜 이름>;|
+|geoip|IP의 국가 확인|gepip:<src|dst|both|any>,국가1,국가2,국가3;|
+|id|해당 id 검사|id:<number>;|
+<br><br><br>
+
+
+
+TCP 옵션 목록
+|옵션|의미|사용법|
+|:----:|:----:|:----:|
+|tcp.flags|플래그 지정|tcp.flags:<flag><flag2><flag3> <--- 플래그명의 첫 철자를 대문자로 이어서 입력하면 된다.|
+|seq|시퀀스번호 지정|seq:<number>|
+|ack|ack번호 지정|ack:<number>|
+|window|window크기 지정|window:<number>|
