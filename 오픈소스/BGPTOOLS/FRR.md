@@ -9,6 +9,8 @@ echo deb '[signed-by=/usr/share/keyrings/frrouting.gpg]' [https://deb.frrouting.
 sudo apt update && sudo apt install frr frr-pythontools
 ```
 
+참고 사이트 - https://docs.frrouting.org/en/latest/bgp.html
+
 **BGP 설정방법**
 ```
 cd /etc/frr/daemons
