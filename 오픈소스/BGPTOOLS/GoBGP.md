@@ -5,7 +5,7 @@ GoBGP는 최신 환경을 위해 설계된 Go 프로그래밍 언어
 
 ```
 > sudo apt install gobpgd
-> git clone git://github.com/osrg/gobgp
+> git clone git://github.com/osrg/gobgp (현재 다운 안됌)
 > cd gobgp && go mod download
 ```
 
