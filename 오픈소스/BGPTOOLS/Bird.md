@@ -1,3 +1,4 @@
+참고 사이트 - https://gitlab.nic.cz/labs/bird/-/wikis/BGP_example_1
 **설치방법**
 ```
 sudo apt update
@@ -168,46 +169,71 @@ function rt_export_all()
 예시 3) 
 **이웃을 위한 특정 필터**
 ```
+// AS 123으로부터 입력 경로 처리
 filter bgp_in_uplink_123
 {
-  if ! rt_import_all(123) then reject;
+  if ! rt_import_all(123) then reject; //검증되지 않으면 거부
+  //그 외 모든 경로 수락
   accept;
 }
+
+// AS 123으로 보내는 출력 경로 처리
 filter bgp_out_uplink_123
 {
-  if ! rt_export() then reject;
+  if ! rt_export() then reject; // 검증되지 않으면 거부
+  //그 외 모든 경로 수락
   accept;
 }
+
+//peer AS 234로부터 입력 경로 처리
 filter bgp_in_peer_234
 {
+//검증되지 않으면 거부
   if ! rt_import(234, [ 234, 1234, 2345, 3456 ],
         [ 12.34.0.0/16, 23.34.0.0/16, 34.56.0.0/16 ])
   then reject;
+  //그 외 모든 경로 수락
   accept;
 }
+
+//peer AS 234로 보내는 출력 경로 처리
 filter bgp_out_peer_234
 {
-  if ! rt_export() then reject;
+  if ! rt_export() then reject; //검증되지 않으면 거부
+  //그 외 모든 경로 수락
   accept;
 }
+
+// 경로 서버로부터의 입력 경로 처리
 filter bgp_in_rs
 {
-  if ! rt_import_rs() then reject;
-  accept;
+  if ! rt_import_rs() then reject; //검증되지 않으면 거부
+  //그 외 모든 경로 수락
+  accept; 
 }
+
+// 경로 서버로 보내는 출력 경로 처리
 filter bgp_out_rs
 {
-  if ! rt_export() then reject;
+  if ! rt_export() then reject; //검증되지 않으면 거부
+  //그 외 모든 경로 수락
   accept;
 }
+
+// 클라이언트 AS 345로부터의 입력 경로 처리
 filter bgp_in_client_345
 {
+// 검증되지 않으면 거부
   if ! rt_import(345, [ 345 ], [ 34.5.0.0/16 ]) then reject;
+  //그 외 모든 경로 수락
   accept;
 }
+
+// 클라이언트 AS 345로부터의 출력 경로 처리
 filter bgp_out_client_345
 {
-  if ! rt_export_all() then reject;
+  if ! rt_export_all() then reject; //검증되지 않으면 거부
+  //그 외 모든 경로 수락
   accept;
 }
 ```
