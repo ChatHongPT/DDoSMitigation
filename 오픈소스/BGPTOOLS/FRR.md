@@ -62,7 +62,7 @@ neighbor <IP주소> ebgp-multihop <hop>
 neighbor <IP주소> password <PASSWORD>
 ```
 
-**이웃에게 속성 전송 여부**
+**이웃에게 속성 전송 여부**
 ```
 neighbor <IP주소> send-community <TYPE>
 ```
@@ -71,7 +71,7 @@ neighbor <IP주소> send-community <TYPE>
 	extended -  확장된 커뮤니티만 전송
 	both - 모두 전송
 
-**라우팅 정보 전파**
+**라우팅 정보 전파**
 ```
 network <IP주소/서브넷 마스크>
 ```
