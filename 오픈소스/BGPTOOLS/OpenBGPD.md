@@ -1,4 +1,7 @@
-https://docs.rockylinux.org/guides/network/openbgpd_bgp_router/#checking-bgp-status
+참고사이트
+- https://docs.rockylinux.org/guides/network/openbgpd_bgp_router/#checking-bgp-status
+- https://man.openbsd.org/bgpctl#flowspec
+  
 **설치방법**
 ```
 > sudo apt-get install openbgpd
