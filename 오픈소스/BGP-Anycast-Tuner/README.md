@@ -17,4 +17,4 @@ docker build -t bgp-anycast-tuner .
 docker run -p 12445:12445 bgp-anycast-tuner
 ```
 
-4. Terminal에 출력된 주소인 `http://127.0.0.1:12445`로 접속하여 BGP-Anycast-Tuner를 확인한다.
+4. Terminal에 출력된 주소인 [http://127.0.0.1:12445]로 접속하여 BGP-Anycast-Tuner를 확인한다.
