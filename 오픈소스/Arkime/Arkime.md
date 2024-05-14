@@ -26,14 +26,17 @@ https://arkime.com/faq
 /data/moloch/etc/config.ini 파일에서 설정한다.
 
 #bpf
+
 거부하고 싶은 트래픽을 필터링한다. 
 bpf=not port 9200 # 9200포트 필터링 (Elasticsearch)
 
 #dontSaveBPFs
+
 허용하지 않는 bpf 목록이다. port의 ':' 뒤에 필터당 저장할 패킷 수슬 지정할 수도 있다.
 dontSaveBPFs=port22:5 # 22번 포트에 대해 5개의 패킷만 저장한다.
 
 #packet-drop-ips
+
 Drop IP address를 지정한다. packet-drop-ips는 패킷이 moloch-capture 프로세스에 직접 도달한다.
 -많은 범위의 ip를 drop시킬 때 bpf보다 유용함.
 -drop 범위에 포함되는 allow 범위를 만들수 있음 (블랙리스트 정책)
