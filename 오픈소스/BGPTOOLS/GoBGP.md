@@ -34,8 +34,6 @@ sudo -E gobgpd -f gobgpd.conf
 ```
 
 **BGP 정보 조회 **
-
-예시)
 ```
 gobgp neighbor <홉 주소> local
 ```
