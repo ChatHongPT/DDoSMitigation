@@ -100,11 +100,13 @@ bgpctl flowspec add [IP버전] match [일치조건] 192.0.2.0/24 then [옵션]
 
 ```
 [IP 버전]
+
 inet - ipv4
 
 inet6 - ipv6
 
 [일치조건]
+
 source - 출발 IP주소 or 범위 지정
 
 desination - 목적지 IP주소 or 범위 지정
@@ -114,6 +116,7 @@ port - 출발지 or 목적지 포트 or 포트 범위
 protocol - 프로토콜 식별 (TCP, UDP)
 
 [옵션]
+
 discard - 일치하는 패킷 폐기
 
 rate-limit X - 일치하는 패킷의 대역폭을 초당 X바이트로 제한
