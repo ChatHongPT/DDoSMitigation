@@ -87,7 +87,7 @@ __모든 인원 논문 요약 및 번역 완료__
 - arkime: 완료
 - bcc: 완료
 - suricata: 70%
-- bgp tool: 70%
+- bgp tool: 완료
 - xdp firewall: 완료
 - gpt-2: 완료
 - bgp anycast tuner: 90%
