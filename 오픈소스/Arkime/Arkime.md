@@ -19,12 +19,24 @@ https://arkime.com/downloads
 환경에 맞게 파일을 다운로드 한다.
 
  1  apt-get update
-    2  apt-get upgrade
-       3 dpkg -i arkime_5.1.2-1.ubuntu2404_amd64.deb 
-          4 apt install libjson-perl libyaml-dev libyara10 librdkafka1
-            5 /opt/arkime/bin/Configure
-                6/opt/arkime/db/db.pl http://127.0.0.1:9200 init
+ 
+ 2  apt-get upgrade
+ 
+ 3 dpkg -i arkime_5.1.2-1.ubuntu2404_amd64.deb 
+ 
+ 4 apt install libjson-perl libyaml-dev libyara10 librdkafka1
+ 
+ 5 /opt/arkime/bin/Configure
 
+ 6 systemctl start elasticserach.service
+ 
+ 7 /opt/arkime/db/db.pl http://127.0.0.1:9200 init
+
+ 8 /opt/arkime/bin/arkime_add_user.sh admin "Admin User" password --admin
+
+ 9 systemctl start arkimecapture.service
+
+ 10 systemctl start arkimeviewer.service
 
 
 
