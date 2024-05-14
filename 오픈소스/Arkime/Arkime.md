@@ -12,6 +12,20 @@ viewer: 캡처된 데이터를 시각화하고 검색할 수 있는 웹 인터�
 
 OpenSearch/Elasticsearch: Arkime가 사용하는 검색 데이터베이스 기술이다. 이를 통해 캡처된 데이터와 메타데이터를 저장하고 검색할 수 있다. Elasticsearch는 대규모 데이터를 실시간으로 색인화하고 검색할 수 있는 뛰어난 성능을 제공한다.
 
+설치
+=============
+https://arkime.com/downloads
+
+환경에 맞게 파일을 다운로드 한다.
+
+ 1  apt-get update
+    2  apt-get upgrade
+       3 dpkg -i arkime_5.1.2-1.ubuntu2404_amd64.deb 
+          4 apt install libjson-perl libyaml-dev libyara10 librdkafka1
+            5 /opt/arkime/bin/Configure
+                6/opt/arkime/db/db.pl http://127.0.0.1:9200 init
+
+
 
 
 
