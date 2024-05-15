@@ -74,13 +74,10 @@ Drop IP address를 지정한다. packet-drop-ips는 패킷이 moloch-capture 프
 -많은 범위의 ip를 drop시킬 때 bpf보다 유용함.
 
 -drop 범위에 포함되는 allow 범위를 만들수 있음 (블랙리스트 정책)
-
-[packet-drop-ips]
 <pre><code>
+[packet-drop-ips]
 192.168.1.0/24=drop # 192.168.1.1~255 Drop
-
 192.168.1.10=allow  # 192.168.1.10은 Allow
-
 fe60::5d9b:1ce3:3dc7:9fc2=drop # ipv6도 가능
 </code></pre>
 
