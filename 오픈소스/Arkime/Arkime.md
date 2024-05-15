@@ -18,6 +18,10 @@ https://arkime.com/downloads
 
 환경에 맞게 파일을 다운로드 한다.
 
+https://raw.githubusercontent.com/arkime/arkime/main/release/README.txt
+
+설치 가이드라인을 따른다.
+
  1  apt-get update
  
  2  apt-get upgrade
@@ -26,17 +30,17 @@ https://arkime.com/downloads
  
  4 apt install libjson-perl libyaml-dev libyara10 librdkafka1
  
- 5 /opt/arkime/bin/Configure
+ 5 /opt/arkime/bin/Configure # Configure 스크립트를 실행하여 기본 Arkime 항목을 구성한다.
 
  6 systemctl start elasticserach.service
  
- 7 /opt/arkime/db/db.pl http://127.0.0.1:9200 init
+ 7 /opt/arkime/db/db.pl http://127.0.0.1:9200 init # OpenSearch/Elasticsearch 구성을 초기화한다.
 
- 8 /opt/arkime/bin/arkime_add_user.sh admin "Admin User" password --admin
+ 8 /opt/arkime/bin/arkime_add_user.sh admin "Admin User" password --admin # 관리자 사용자를 추가한다. admin, password
 
- 9 systemctl start arkimecapture.service
+ 9 systemctl start arkimecapture.service # 서비스 시작
 
- 10 systemctl start arkimeviewer.service
+ 10 systemctl start arkimeviewer.service # 서비스 시작
 
 
 
