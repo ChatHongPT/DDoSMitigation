@@ -73,6 +73,20 @@ OSI 7계층 프로토콜을 모두 지원한다.
 
 
 
+데이터 검사 옵션 목록
+|옵션|의미|사용법|
+|:----:|:----:|:----|
+|content|특정 내용 검사|content:값|
+|offset|검사 시작 위치 지정|offset:값|
+|depth|offset을 시작으로 검사할 데이터의 최대 길이 지정|depth:값|
+|byte_test|페이로드 내의 특정 위치에서 정수값을 추출하고, 그 값에 대해 비교 연산을 수|byte_test:<num_bytes>, <operator>, <value>, <offset>|
+|pcre|정규표현식을 사용하여 패킷 데이터를 검사|pcre:정규표현식|
+|file.name|파일명 검사|file.name; 데이터 검사 옵션|
+
+<br><br><br>
+
+
+
 IP 옵션 목록
 |옵션|의미|사용법|
 |:----:|:----:|:----:|
@@ -82,6 +96,9 @@ IP 옵션 목록
 |ip_proto|해당 패킷에 포함되어있는 프로토콜 검사|ip_proto:<프로토콜 이름>;|
 |geoip|IP의 국가 확인|gepip:<src|dst|both|any>,국가1,국가2,국가3;|
 |id|해당 id 검사|id:<number>;|
+|ipv4.hdr|ipv4 헤더 전체에 대한 상세 사항|ipv4.hdr; 데이터 검사 옵션|
+|ipv6.hdr|ipv6 헤더 전체에 대한 상세 사항|ipv6.hdr; 데이터 검사 옵션|
+
 <br><br><br>
 
 
@@ -93,3 +110,47 @@ TCP 옵션 목록
 |seq|시퀀스번호 지정|seq:<number>|
 |ack|ack번호 지정|ack:<number>|
 |window|window크기 지정|window:<number>|
+|tcp.hdr|tcp 헤더 전체에 대한 상세 사항|tcp.hdr; 데이터 검사 옵션|
+|tcp.mss|최대 세그먼트 크기 지정|tcp.mss [< 또는 > 또는 생략 가능] 값|
+
+<br><br><br>
+
+
+
+UDP 옵션 
+|옵션|의미|사용법|
+|:----:|:----:|:----:|
+|udp.hdr|udp 헤더 전체에 대한 상세 사항|udp.hdr; 데이터 검사 옵션|
+
+<br><br><br>
+
+
+
+HTTP 옵션
+|옵션|의미|사용법|
+|:----:|:----:|:----:|
+|http.accept|HTTP 요청헤더의 Accept필드 검사|http.accept; 데이터 검사 옵션|
+|http.accept_enc|HTTP 요청헤더의 Accept_Encoding필드 검사|http.accept_enc; 데이터 검사 옵션|
+|http.accept_lang|HTTP 요청헤더의 Accept_Language필드 검사|http.accept_lang; 데이터 검사 옵션|
+|http.host|HTTP 요청헤더의 host필드 검사 (정규화)|http.host; 데이터 검사 옵션|
+|http.host_raw|HTTP 요청헤더의 host필드 검사 (비정규화|http.host_raw; 데이터 검사 옵션|
+|http.method|HTTP 요청헤더에 사용되는 메서드 검사|http.method; 데이터 검사 옵션|
+|http.referer|HTTP 요청헤더의 referer필드 검사|http.referer; 데이터 검사 옵션|
+|http.request_body|HTTP 요청 본문 검사|http.request_body; 데이터 검사 옵션|
+|http.request_line|HTTP 요청행 전체 검사|http.request_line; 데이터 검사 옵션|
+|http.uri|HTTP 요청헤더의 URI 검사 (정규화)|http.uri; 데이터 검사 옵션|
+|http.uri_raw|HTTP 요청헤더의 URI 검사 (비정규화)|http.uri_raw; 데이터 검사 옵션|
+|http.user_agent|HTTP 요청헤더의 User-Agent필드 검사|http.user_agent; 데이터 검사 옵션|
+|urilen|정규화된 요청 URI의 길이|urilen:값|
+|http.location|HTTP 응답헤더의 location필드 검사|http.location; 데이터 검사 옵션|
+|http.response_body|HTTP 응답 본문 검사|http.response_body; 데이터 검사 옵션|
+|http.response_line|HTTP 응답행 전체 검사|http.response_line; 데이터 검사 옵션|
+|http.server|HTTP 응답헤더의 Server필드 검사|http.server; 데이터 검사 옵션|
+|http.stat_code|HTTP 상태 코드 검사|http.stat_code; 데이터 검사 옵션|
+|http.stat_msg|HTTP 상태 메시지 검사|http.stat_msg; 데이터 검사 옵션|
+|http.connection|HTTP 요청/응답헤더의 Connection필드 검사|http.connection; 데이터 검사 옵션|
+|http.content_len|HTTP 요청/응답헤더의 Content_Length필드 검사|http.content_len; 데이터 검사 옵션|
+|http.content_type|HTTP 요청/응답헤더의 Content_Type필드 검사|http.content_type; 데이터 검사 옵션|
+|http.cookie|HTTP 요청/응답헤더의 Cookie필드 검사|http.cookie; 데이터 검사 옵션|
+|http.hdr|http 헤더 전체에 대한 상세 사항|http.hdr; 데이터 검사 옵션|
+|http.header_names|http 헤더 이름 검사 (주로 헤더 순서 검사에 사용)|http.hdr; 데이터 검사 옵션|
