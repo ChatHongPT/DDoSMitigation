@@ -11,8 +11,8 @@ The primary defense strategies implemented in the program include:
 3. **First SYN Drop** 
 ## XDP Program code
 
-![code](DDoS_Mitigation_1.png)
+![code](./img/DDoS_Mitigation_1.png)
 
 ## Result
 
-![code](ddos_result.png)
+![code](./img/ddos_result.png)
