@@ -8,7 +8,10 @@ In this document, we present our XDP-based program designed to mitigate DDoS att
 The primary defense strategies implemented in the program include: 
 1. **Land Attack Mitigation**: This involves dropping TCP packets with the SYN flag set to prevent Land attacks. 
 2. **Rate Limiting by IP Address**: By monitoring the time intervals between incoming packets from each IP, the program blocks IPs that send packets too rapidly, thereby mitigating potential DDoS attacks.
-3. **First SYN Drop** 
+3. **First SYN Drop**
+
+Additionally, this program code focuses on the structural design of packet processing rather than the actual internal operations for fast packet processing
+
 ## XDP Program code
 
 ![code](./img/DDoS_Mitigation_1.png)
