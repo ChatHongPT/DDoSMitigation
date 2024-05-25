@@ -7,11 +7,11 @@ This document provides a brief code snippet to prevent BPS-based resource overlo
 
 Included below are a short code snippet, results, and a program flowchart.
 ## Code snippet
-![code](bps_2.png)
-![code](bps_1.png)
+![code](./img/bps_2.png)
+![code](./img/bps_1.png)
 
 ## Result
-![code](result_2.jpg)
+![code](./img/result_2.jpg)
 
 ## Overall flowchart
-![code](arch.jpg)
+![code](./img/arch.jpg)
