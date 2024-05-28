@@ -1,4 +1,5 @@
-**BGP-Anycast Tuner**:
+# **BGP-Anycast Tuner**:
+![exec.gif](./img/exec.gif)
    - 설명: BGP anycast 환경에서 라우팅 경로 최적화를 위한 도구.
    - 기능 특징: BGP 라우팅 경로 분석, anycast 대상 선택 최적화.
    - 장단점:
