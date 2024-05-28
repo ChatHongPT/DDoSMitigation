@@ -14,4 +14,4 @@
 
 
 ## Result
-![code](./img/보안솔루션_결과.jpg)
+![code](./img/보안솔루션_결과.png)
