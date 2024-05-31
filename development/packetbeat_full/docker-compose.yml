@@ -1,0 +1,14 @@
+#version: '3.8'
+
+services:
+  packetbeat:
+    image: docker.elastic.co/beats/packetbeat:8.13.4
+    container_name: packetbeat
+    user: packetbeat
+    volumes:
+      - ./packetbeat.docker.yml:/usr/share/packetbeat/packetbeat.yml:ro
+    cap_add:
+      - NET_RAW
+      - NET_ADMIN
+    network_mode: host
+    command: packetbeat -e --strict.perms=false
