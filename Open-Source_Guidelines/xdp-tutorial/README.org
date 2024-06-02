@@ -37,7 +37,7 @@ eBPF나 XDP에 대한 이전 경험은 없다고 가정한다. 이전 프로그�
 그러나 여기에 제시된 모든 것은 최근 커널에서 작동하며, 이 튜토리얼은 누구나 XDP 기본 사항을 배우기 위해 겪을 수 있는 도입으로 기능한다. 
 이 목표를 향해 전진하기 위한 입력과 기여는 매우 환영한다. [[https://github.com/xdp-project/xdp-tutorial/][Github repository]]에서 문제를 열거나 요청을 열기만 하면 된다.
 
-* First step: 환경 구성하기
+# first step setup dependencies
 
 이 튜토리얼의 단계를 완료하기 전에 시스템에 몇 가지 종속성을 설치해야 합니다. [[file:setup_dependencies.org]]에 설명되어 있습니다.
 
@@ -45,7 +45,7 @@ We also provide a helper script that will set up a test environment with
 virtual interfaces for you to test your code on. This is introduced in the
 basic lessons, and also has [[file:testenv/README.org][it's own README file]].
 
-* 수업 구성 방식
+# how-the-lessons-are-organised
 튜토리얼은 여러 개의 레슨으로 구성되어 있으며, 각 레슨에는 고유한 레슨이 있습니다
 서브디렉토리 및 클래스는 카테고리별로 그룹화됩니다:
 
