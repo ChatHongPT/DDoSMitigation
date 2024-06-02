@@ -45,7 +45,7 @@ We also provide a helper script that will set up a test environment with
 virtual interfaces for you to test your code on. This is introduced in the
 basic lessons, and also has [[file:testenv/README.org][it's own README file]].
 
-# how-the-lessons-are-organised
+# how the lessons are organised
 튜토리얼은 여러 개의 레슨으로 구성되어 있으며, 각 레슨에는 고유한 레슨이 있습니다
 서브디렉토리 및 클래스는 카테고리별로 그룹화됩니다:
 
