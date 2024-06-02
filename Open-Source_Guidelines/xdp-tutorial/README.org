@@ -32,20 +32,14 @@ XDP는 업스트림 리눅스 커널의 일부이며, 커널이 데이터에 대
 우리는 당신이 리눅스 네트워킹에 대한 기본적인 이해와 =iproute2= 도구 모음으로 구성하는 방법을 알고 있다고 가정하지만, 
 eBPF나 XDP에 대한 이전 경험은 없다고 가정한다. 이전 프로그래밍 경험도 도움이 된다: 모든 수업은 C로 작성되며 몇 가지 기본적인 포인터 산술 및 앨리어싱을 포함한다.
 
-The tutorial is a work in progress, and was initially created for use as a
-live tutorial at the [[https://www.netdevconf.org/0x13/session.html?tutorial-XDP-hands-on][Netdev Conference]] in Prague in March 2019. Since the
-kernel BPF subsystem continues to develop at a rapid pace, this tutorial has
-not kept up with all developments. However, everything presented here will
-work with recent kernels, and this tutorial functions as a self-contained
-introduction that anyone can go through to learn the XDP basics. Input and
-contributions to advance towards this goal are very welcome; just open
-issues or pull requests in the [[https://github.com/xdp-project/xdp-tutorial/][Github repository]].
+이 튜토리얼은 진행 중인 작업이며, 처음에는 2019년 3월 프라하에서 열린 [[https://www.netdevconf.org/0x13/session.html?tutorial-XDP-hands-on][Netdev Conference]]에서 
+라이브 튜토리얼로 사용하기 위해 만들어졌다. 커널 BPF 하위 시스템이 빠른 속도로 계속 개발되기 때문에 이 튜토리얼이 모든 개발을 따라가지는 못했다. 
+그러나 여기에 제시된 모든 것은 최근 커널에서 작동하며, 이 튜토리얼은 누구나 XDP 기본 사항을 배우기 위해 겪을 수 있는 도입으로 기능한다. 
+이 목표를 향해 전진하기 위한 입력과 기여는 매우 환영한다. [[https://github.com/xdp-project/xdp-tutorial/][Github repository]]에서 문제를 열거나 요청을 열기만 하면 된다.
 
-* First step: Setup dependencies
+* First step: 환경 구성하기
 
-Before you can start completing step in this tutorial, you will need to
-install a few dependencies on your system. These are described in
-[[file:setup_dependencies.org]].
+이 튜토리얼의 단계를 완료하기 전에 시스템에 몇 가지 종속성을 설치해야 합니다. [[file:setup_dependencies.org]]에 설명되어 있습니다.
 
 We also provide a helper script that will set up a test environment with
 virtual interfaces for you to test your code on. This is introduced in the
