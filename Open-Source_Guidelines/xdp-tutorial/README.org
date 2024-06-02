@@ -2,10 +2,9 @@
 #+TITLE: XDP Programming Hands-On Tutorial
 #+OPTIONS: ^:nil
 
-This repository contains a tutorial that aims to introduce you to the basic
-steps needed to effectively write programs for the eXpress Data Path (XDP)
-system in the Linux kernel, which offers high-performance programmable
-packet processing integrated with the kernel.
+이 저장소에는 커널과 통합된 고성능 프로그래밍 가능 패킷 처리를 제공하는 리눅스 커널에서 
+eXDP(eXpress Data Path) 시스템을 위한 프로그램을 효과적으로 작성하는 데 필요한 기본 단계를 
+소개하는 것을 목표로 하는 튜토리얼이 포함되어 있습니다.
 
 The tutorial is composed of a number of lessons, each of which has its own
 repository. Start with the lessons starting with "basicXX", and read the
