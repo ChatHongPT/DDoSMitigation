@@ -41,9 +41,8 @@ eBPF나 XDP에 대한 이전 경험은 없다고 가정한다. 이전 프로그�
 
 이 튜토리얼의 단계를 완료하기 전에 시스템에 몇 가지 종속성을 설치해야 합니다. [[file:setup_dependencies.org]]에 설명되어 있습니다.
 
-We also provide a helper script that will set up a test environment with
-virtual interfaces for you to test your code on. This is introduced in the
-basic lessons, and also has [[file:testenv/README.org][it's own README file]].
+우리는 코드를 테스트할 수 있는 가상 인터페이스로 테스트 환경을 설정하는 헬퍼 스크립트도 제공합니다. 
+이는 기본 강의에서 소개되며, 또한 [[file:testenv/README.org][it's own README file]]을 가지고 있습니다.
 
 # how the lessons are organised
 튜토리얼은 여러 개의 레슨으로 구성되어 있으며, 각 레슨에는 고유한 레슨이 있습니다
