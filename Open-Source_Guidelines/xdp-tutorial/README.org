@@ -1,20 +1,19 @@
 # -*- fill-column: 76; -*-
-#+TITLE: XDP Programming Hands-On Tutorial
+#+TITLE: XDP 프로그래밍 실전 안내서
 #+OPTIONS: ^:nil
 
 이 저장소에는 커널과 통합된 고성능 프로그래밍 가능 패킷 처리를 제공하는 리눅스 커널에서 
 eXDP(eXpress Data Path) 시스템을 위한 프로그램을 효과적으로 작성하는 데 필요한 기본 단계를 
 소개하는 것을 목표로 하는 튜토리얼이 포함되어 있습니다.
 
-The tutorial is composed of a number of lessons, each of which has its own
-repository. Start with the lessons starting with "basicXX", and read the
-README.org file in each repository for instructions for that lesson.
+튜토리얼은 여러 개의 레슨으로 구성되어 있으며, 각 레슨에는 고유한 저장소가 있습니다. 
+"basicXX"로 시작하는 레슨부터 시작하여 해당 레슨에 대한 지침은 각 저장소에 있는 README.org 파일을 읽으십시오.
 
-Keep reading below for an introduction to XDP and an overview of what you
-will learn in this tutorial, or jump [[file:basic01-xdp-pass/README.org][straight to the first lesson]].
+XDP에 대한 소개 및 개요를 보려면 아래를 계속 읽으십시오
+이 튜토리얼에서 배우거나 [[file:basic01-xdp-pass/README.org][첫 레슨으로]] 이동합니다.
 
-* Table of Contents                                                     :TOC:
-- [[#introduction][Introduction]]
+* 목차                                                     :TOC:
+- [[#introduction][도입]]
 - [[#first-step-setup-dependencies][First step: Setup dependencies]]
 - [[#how-the-lessons-are-organised][How the lessons are organised]]
   - [[#basic-setup-lessons][Basic setup lessons]]
