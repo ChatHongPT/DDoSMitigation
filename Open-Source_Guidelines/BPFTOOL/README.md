@@ -3,7 +3,7 @@
 
 ![bpftool logo](./img/bpftool_logo.png)
 
-***오픈소스 주소*** : [bpftool](https://github.com/libbpf/bpftool/]
+***오픈소스 주소*** : [bpftool](https://github.com/libbpf/bpftool/)
 
 #### 프로그램 설명
 다양한 BPF 프로그램에 대한 세부 정보들을 수집하며, 명령어를 통한 간단한 수정 및 설정이 가능하다.
