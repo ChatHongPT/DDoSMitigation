@@ -2,7 +2,22 @@
 
 ## 실습 환경 구성[\(Setup dependencies\)](https://github.com/xdp-project/xdp-tutorial/blob/master/setup_dependencies.org)
 Docker 환경(Ubuntu 22.04, 24.02)에서 실습 환경을 구성하려 했으나, make 명령이 정상적으로 실행되지 않았음.
-따라서 vmware로 만든 가상머신에서 실습 환경을 구성함.
+따라서 vmware로 만든 가상머신(Ubuntu 24.04)에서 실습 환경을 구성함.
+
+1. 종속성 설치
+```
+sudo apt install -y git
+sudo apt install -y clang llvm libelf-dev libpcap-dev build-essential libc6-dev-i386
+sudo apt install -y linux-tools-$(uname -r)
+sudo apt install -y linux-headers-$(uname -r)
+sudo apt install -y linux-tools-common linux-tools-generic
+sudo apt install -y tcpdump
+```
+
+2. git clone
+```
+git clone --recurse-submodules https://github.com/xdp-project/xdp-tutorial.git
+```
 
 <!-- # [**XDP-Tutorial**](https://github.com/xdp-project/xdp-tutorial)
    - **설명**: eXpress Data Path의 기본적인 이해를 위한 튜토리얼 및 예제 모음.
