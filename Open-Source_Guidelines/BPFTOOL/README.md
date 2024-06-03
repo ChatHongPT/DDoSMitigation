@@ -1,7 +1,7 @@
 ***
 # Bpftool 오픈소스 가이드라인 
 
-![bpftool logo](./bpftool_logo.png)
+![bpftool logo](./img/bpftool_logo.png)
 오픈소스 주소 : [bpftool](https://github.com/libbpf/bpftool/]
 
 #### 프로그램 설명
@@ -151,21 +151,21 @@ Headerfile error
 ```
 #### 실제 사용
 1. Network - XDP
-	![code](Network_bpftool.gif)
+	![code](./img/Network_bpftool.gif)
 2. Map dump & --pretty
-	![code](j_map_dump.png)
-	
+	![code](./img/j_map_dump.png)
+
 3.  JITed/xlated
-	![show](bpftool_xlated_jited.jpg)
+	![show](./img/bpftool_xlated_jited.jpg)
 4.  perf & use pretty option
-	![show](bpftool_perf.jpg)
-	![show](bpftool_perf2.jpg)
+	![show](./img/bpftool_perf.jpg)
+	![show](./img/bpftool_perf2.jpg)
 5.  btf
-	![code](bpftool_btf.jpg)
+	![code](./img/bpftool_btf.jpg)
 6.  feature list_builtin
-	![code](bpftool_feature.jpg)
+	![code](./img/bpftool_feature.jpg)
 7.  dump visual	
-	![code](bpftool_dump_visual.png)
+	![code](./img/bpftool_dump_visual.png)
  
 
 ---
@@ -179,5 +179,5 @@ docker exec -it bpftool bash
 
 ```
 > Container
-	![code](bpftool_docker.jpg)
+	![code](./img/bpftool_docker.jpg)
 
