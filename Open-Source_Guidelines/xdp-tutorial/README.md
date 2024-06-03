@@ -28,7 +28,7 @@ git clone --recurse-submodules https://github.com/xdp-project/xdp-tutorial.git
 ```
 
 ## 실습
-AF_XDP를 사용하기 위한 목적이므로, xdp-tutorial의 basic01, 02, 03과 advanced03 AF_XDP만 이용한다.
+AF_XDP를 사용하기 위한 목적이므로, xdp-tutorial의 basic01, 02, 03과 advanced03 AF_XDP만 진행한다.
 
 ## basic01 xdp pass
 이 단계의 목적은 xdp를 로드하는 방법으로 3가지와 XDP가 동작중인지를 확인하는 것을 알려준다.
@@ -68,7 +68,7 @@ AF_XDP를 사용하기 위한 목적이므로, xdp-tutorial의 basic01, 02, 03�
   \[ID\]만 제거
   `sudo ./xdp_pass_user --dev lo -U [ID]`
 
-  전부 제거
+  - 전부 제거
   `sudo ./xdp_pass_user --dev lo --unload-all`
 
 ## basic02 prog by name
@@ -96,4 +96,6 @@ int  xdp_drop_func(struct xdp_md *ctx)
 ![xdp_pass](./img/xdp_pass.png)
 
 ## basic03 map counter
+
+
 ## advanced03 AF_XDP
