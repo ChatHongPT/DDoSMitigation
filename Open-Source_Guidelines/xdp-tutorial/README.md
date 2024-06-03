@@ -62,7 +62,7 @@ AF_XDP를 사용하기 위한 목적이므로, xdp-tutorial의 basic01, 02, 03�
   sudo bpftool net list dev lo
   sudo xdp-loader status lo
   ```
-  [bpftool_load_check](./img/xdp_load_check.png)
+  [bpftool_load_check](./img/bpftool_load_check.png)
 
   - 제거
   \[ID\]만 제거
