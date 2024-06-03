@@ -31,7 +31,7 @@ git clone --recurse-submodules https://github.com/xdp-project/xdp-tutorial.git
 AF_XDP를 사용하기 위한 목적이므로, xdp-tutorial의 basic01, 02, 03과 advanced03 AF_XDP만 이용한다.
 
 ## basic01 xdp pass
-이 단계의 목적은 xdp를 로드하는 방법으로 3가지가 있다.
+이 단계의 목적은 xdp를 로드하는 방법으로 3가지와 XDP가 동작중인지를 확인하는 것을 알려준다.
 
 ### iproute2 ip
   - 로드
