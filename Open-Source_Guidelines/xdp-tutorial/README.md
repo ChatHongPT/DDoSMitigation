@@ -28,7 +28,7 @@ git clone --recurse-submodules https://github.com/xdp-project/xdp-tutorial.git
 ```
 
 ## 실습
-AF_XDP를 사용하기 위한 목적이므로, xdp-tutorial의 basic01, 2, 3과 advanced03-AF_XDP만 이용한다.
+AF_XDP를 사용하기 위한 목적이므로, xdp-tutorial의 basic01, 02, 03과 advanced03 AF_XDP만 이용한다.
 
 ## basic01 xdp pass
 이 단계의 목적은 xdp를 로드하는 방법으로 3가지가 있다.
@@ -63,11 +63,34 @@ AF_XDP를 사용하기 위한 목적이므로, xdp-tutorial의 basic01, 2, 3과 
 
   - 제거
   \[ID\]만 제거
-  `sudo ./xdp_pass_user --dev lo -U \[ID\]]`
+  `sudo ./xdp_pass_user --dev lo -U [ID]`
 
   전부 제거
   `sudo ./xdp_pass_user --dev lo --unload-all`
 
 ## basic02 prog by name
+이 단계의 목적은 둘 이상의 XDP 프로그램이 있을 때, 하나를 고르는 법을 알려주는 것이다.
+
+`xdp_prog_kern.c`에는 XDP_PASS와 XDP_DROP을 수행하는 두 프로그램이 담겨있다.
+```
+SEC("xdp")
+int  xdp_pass_func(struct xdp_md *ctx)
+{
+	return XDP_PASS;
+}
+
+SEC("xdp")
+int  xdp_drop_func(struct xdp_md *ctx)
+{
+	return XDP_DROP;
+}
+```
+
+`sudo ./xdp_loader --dev veth-basic02 --progname xdp_drop_func`로 XDP_DROP 프로그램을 실행하면, 보낸 ping이 모두 버려지는 것을 볼 수 있다.
+![xdp_drop](./img/xdp_drop.png)
+
+그리고 `sudo ./xdp_loader --dev veth-basic02 --progname xdp_pass_func`로 XDP_PASS 프로그램을 실행하면 아까와 다르게 정상적으로 수신된다.
+![xdp_pass](./img/xdp_pass.png)
+
 ## basic03 map counter
 ## advanced03 AF_XDP
