@@ -31,7 +31,7 @@ git clone --recurse-submodules https://github.com/xdp-project/xdp-tutorial.git
 AF_XDP를 사용하기 위한 목적이므로, xdp-tutorial의 basic01, 02, 03과 advanced03 AF_XDP만 진행한다.
 
 ## basic01 xdp pass
-이 단계의 목적은 xdp를 로드하는 방법으로 3가지와 XDP가 동작중인지를 확인하는 것을 알려준다.
+이 단계의 목적은 xdp를 로드하는 방법으로 3가지와 XDP가 동작중인지를 확인하는 것이다.
 
 ### iproute2 ip
   - 로드
@@ -72,7 +72,7 @@ AF_XDP를 사용하기 위한 목적이므로, xdp-tutorial의 basic01, 02, 03�
   `sudo ./xdp_pass_user --dev lo --unload-all`
 
 ## basic02 prog by name
-이 단계의 목적은 둘 이상의 XDP 프로그램이 있을 때, 하나를 고르는 법을 알려주는 것이다.
+이 단계의 목적은 둘 이상의 XDP 프로그램이 있을 때, 하나를 고르는 법이다.
 
 `xdp_prog_kern.c`에는 XDP_PASS와 XDP_DROP을 수행하는 두 프로그램이 담겨있다.
 ```
@@ -96,6 +96,7 @@ int  xdp_drop_func(struct xdp_md *ctx)
 ![xdp_pass](./img/xdp_pass.png)
 
 ## basic03 map counter
-
+이번 단계의 목적은 XDP가 속해있는 BPF의 map을 사용하는 방법이다.
 
 ## advanced03 AF_XDP
+AF_XDP는
