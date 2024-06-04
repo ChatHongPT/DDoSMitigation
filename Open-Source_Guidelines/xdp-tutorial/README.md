@@ -13,7 +13,7 @@ xdp-tutorial은 xdp에 대한 간단한 설명과 예제 코드를 보여주어 
 - [실습 환경 구성](#실습-환경-구성setup-dependencies)
 - [basic01 xdp pass](#basic01-xdp-pass)
 - [basic02 prog by name](#basic02-prog-by-name)
-- [basic03 map counter](#basic03-map-counter)
+- [basic03 map](#basic03-map)
 - [advanced03 AF_XDP](#advanced03-af_xdp)
 
 <!-- # [**XDP-Tutorial**](https://github.com/xdp-project/xdp-tutorial)
@@ -112,8 +112,22 @@ int  xdp_drop_func(struct xdp_md *ctx)
 그리고 `sudo ./xdp_loader --dev veth-basic02 --progname xdp_pass_func`로 XDP_PASS 프로그램을 실행하면 아까와 다르게 정상적으로 수신된다.
 ![xdp_pass](./img/xdp_pass.png)
 
-## basic03 map counter
+## basic03 map
 이번 단계의 목적은 XDP가 속해있는 BPF의 map을 사용하는 방법이다.
+BPF map은 다음과 같이 이루어져 있다.
+```
+struct {
+	__uint(type, BPF_MAP_TYPE_ARRAY);
+	__type(key, __u32);
+	__type(value, struct datarec);
+	__uint(max_entries, XDP_ACTION_MAX);
+} xdp_stats_map SEC(".maps");
+```
+BPF map은 BPF 프로그램(kernel)과 user space에서 둘다 접근 가능할 수 있다.
+
+이 단계에서는 BPF map을 이용한 패킷을 갯수를 출력하는 예제가 있다.
+struct datarec에 패킷
+![xdp_map](./img/xdp_map.png)
 
 ## advanced03 AF_XDP
 AF_XDP는
