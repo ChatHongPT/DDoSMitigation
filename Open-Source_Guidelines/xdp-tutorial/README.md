@@ -125,8 +125,8 @@ struct {
 ```
 BPF map은 BPF 프로그램(kernel)과 user space에서 둘다 접근 가능할 수 있다.
 
-이 단계에서는 BPF map을 이용한 패킷을 갯수를 출력하는 예제가 있다.
-struct datarec에 패킷
+이 단계에서는 BPF map을 이용해 받은 패킷의 크기를 출력하는 예제가 있다.
+struct datarec에 bytes count 값을 저장할 변수를 생성해 다음과 같이 출력할 수 있다.
 ![xdp_map](./img/xdp_map.png)
 
 ## advanced03 AF_XDP
