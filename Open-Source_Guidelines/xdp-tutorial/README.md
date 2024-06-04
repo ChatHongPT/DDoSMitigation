@@ -3,7 +3,7 @@
 ![xdp.png](./img/xdp.png)
 xdp는 eXpress Data Path의 약자로, 위 사진과 같이 네트워크 스택을 거치지 않고 패킷을 처리할 수 있게 도와준다.
 기존의 방식인 네트워크 스택을 경유하여 패킷을 처리하게 되면, 각 Layer를 거칠때 마다, Encapsulation/Decapsulation을 하고, 이 과정에서 copy를 하여 오버헤드가 발생한다.
-xdp는 불필요한 copy과정을 생략하여 기존보다 빠른 패킷을 처리할 수 있도록 한다.
+xdp는 불필요한 copy과정을 생략하여 기존보다 빠르게 패킷을 처리할 수 있도록 한다.
 
 xdp-tutorial은 xdp에 대한 간단한 설명과 예제 코드를 보여주어 xdp를 활용할 수 있게 도와준다.
 
@@ -113,7 +113,7 @@ int  xdp_drop_func(struct xdp_md *ctx)
 
 ## basic03 map
 이번 단계의 목적은 XDP가 속해있는 BPF의 map을 사용하는 방법이다.
-BPF map은 다음과 같이 이루어져 있다.
+BPF map의 예시는 다음과 같이 이루어져 있다.
 ```
 struct {
 	__uint(type, BPF_MAP_TYPE_ARRAY);
@@ -129,4 +129,7 @@ BPF map은 다른 BPF 프로그램(kernel)과 user space 두 곳에서 접근 �
 ![xdp_map](./img/xdp_map.png)
 
 ## advanced03 AF_XDP
-AF_XDP는
+![xdp.png](./img/xdp.png)
+AF_XDP는 네트워크 스택을 거치지 않고(우회하여), 곧장 userspace로 가져올 수 있게 해준다.
+XDP 프로그램의 XDP_REDIRECT를 사용하면, bpf_redirect_map() 함수로 받은 프레임을 다른 XDP 가능한 네트워크 장치로 보낼수 있다.
+그리고 AF_XDP 소켓은 user space에 있는 application의 메모리 버퍼에 프레임을 보낼 수 있다.
