@@ -1,6 +1,20 @@
 # XDP-Tutorial 가이드라인
 
 ![xdp.png](./img/xdp.png)
+xdp는 eXpress Data Path의 약자로, 위 사진과 같이 네트워크 스택을 거치지 않고 패킷을 처리할 수 있게 도와준다.
+기존의 방식인 네트워크 스택을 경유하여 패킷을 처리하게 되면, 각 Layer를 거칠때 마다, Encapsulation/Decapsulation을 하고, 이 과정에서 copy를 하여 오버헤드가 발생한다.
+xdp는 불필요한 copy과정을 생략하여 기존보다 빠른 패킷을 처리할 수 있도록 한다.
+
+xdp-tutorial은 xdp에 대한 간단한 설명과 예제 코드를 보여주어 xdp를 활용할 수 있게 도와준다.
+
+우리는 들어온 패킷을 AF_XDP를 이용하여 패킷을 userspace로 가져오는 방법을 탐구할 것이다.
+
+## 목차
+- [실습 환경 구성](#실습-환경-구성setup-dependencies)
+- [basic01 xdp pass](#basic01-xdp-pass)
+- [basic02 prog by name](#basic02-prog-by-name)
+- [basic03 map counter](#basic03-map-counter)
+- [advanced03 AF_XDP](#advanced03-af_xdp)
 
 <!-- # [**XDP-Tutorial**](https://github.com/xdp-project/xdp-tutorial)
    - **설명**: eXpress Data Path의 기본적인 이해를 위한 튜토리얼 및 예제 모음.
