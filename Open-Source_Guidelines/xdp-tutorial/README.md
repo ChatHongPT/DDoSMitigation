@@ -20,6 +20,7 @@ sudo apt install -y linux-tools-$(uname -r)
 sudo apt install -y linux-headers-$(uname -r)
 sudo apt install -y linux-tools-common linux-tools-generic
 sudo apt install -y tcpdump
+sudo apt install -y m4
 ```
 
 2. git clone
