@@ -9,6 +9,8 @@ xdp-tutorial은 xdp에 대한 간단한 설명과 예제 코드를 보여주어 
 
 우리는 들어온 패킷을 AF_XDP를 이용하여 패킷을 userspace로 가져오는 방법을 탐구할 것이다.
 
+AF_XDP를 사용하기 위한 목적이므로, xdp-tutorial의 basic01, 02, 03과 advanced03 AF_XDP만 진행한다.
+
 ## 목차
 - [실습 환경 구성](#실습-환경-구성setup-dependencies)
 - [basic01 xdp pass](#basic01-xdp-pass)
@@ -43,10 +45,7 @@ sudo apt install -y m4
 ```
 git clone --recurse-submodules https://github.com/xdp-project/xdp-tutorial.git
 ```
-
 ## 실습
-AF_XDP를 사용하기 위한 목적이므로, xdp-tutorial의 basic01, 02, 03과 advanced03 AF_XDP만 진행한다.
-
 ## basic01 xdp pass
 이 단계의 목적은 xdp를 로드하는 방법으로 3가지와 XDP가 동작중인지를 확인하는 것이다.
 
