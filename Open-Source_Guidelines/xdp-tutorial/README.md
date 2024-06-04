@@ -82,10 +82,10 @@ AF_XDP를 사용하기 위한 목적이므로, xdp-tutorial의 basic01, 02, 03�
   ![bpftool_load_check](./img/bpftool_load_check.png)
 
   - 제거
-  \[ID\]만 제거
+  \[ID\]만 제거  
   `sudo ./xdp_pass_user --dev lo -U [ID]`
 
-  - 전부 제거
+  전부 제거  
   `sudo ./xdp_pass_user --dev lo --unload-all`
 
 ## basic02 prog by name
@@ -123,10 +123,10 @@ struct {
 	__uint(max_entries, XDP_ACTION_MAX);
 } xdp_stats_map SEC(".maps");
 ```
-BPF map은 BPF 프로그램(kernel)과 user space에서 둘다 접근 가능할 수 있다.
+BPF map은 다른 BPF 프로그램(kernel)과 user space 두 곳에서 접근 가능하다.
 
-이 단계에서는 BPF map을 이용해 받은 패킷의 크기를 출력하는 예제가 있다.
-struct datarec에 bytes count 값을 저장할 변수를 생성해 다음과 같이 출력할 수 있다.
+이 단계에서는 BPF map을 이용해 받은 패킷의 크기를 출력하는 예제가 있다.  
+`struct datarec`에 bytes count 값을 저장할 변수를 생성해 다음과 같이 출력할 수 있다.
 ![xdp_map](./img/xdp_map.png)
 
 ## advanced03 AF_XDP
