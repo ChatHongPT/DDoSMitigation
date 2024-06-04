@@ -134,5 +134,6 @@ AF_XDP는 네트워크 스택을 거치지 않고(우회하여), 곧장 userspac
 XDP 프로그램의 XDP_REDIRECT를 사용하면, bpf_redirect_map() 함수로 받은 프레임을 다른 XDP 가능한 네트워크 장치로 보낼수 있다.
 그리고 AF_XDP 소켓은 user space에 있는 application의 메모리 버퍼에 프레임을 보낼 수 있다.
 
-이 과정에 있어서 커널이 map에 저장된 프레임을 메모리에 쓰고, user space에 있는 application이 읽고 메모리에서 지우기 때문에, 문제가 생길 수 있다.(producer-comsumer problem)
-따라서 다음의 구조로 메모리를 공유한다.
+이 과정에 있어서 커널이 map에 저장된 프레임을 메모리에 쓰고, user space에 있는 application이 읽기 때문에, 문제가 생길 수 있다.(producer-comsumer problem)
+따라서 AF_XDP 소켓은 다음의 구조로 메모리를 공유한다.
+![af_xdp](./img/af_xdp.png)
