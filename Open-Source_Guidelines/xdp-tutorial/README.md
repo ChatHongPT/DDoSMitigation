@@ -139,6 +139,6 @@ XDP 프로그램의 XDP_REDIRECT를 사용하면, bpf_redirect_map() 함수로 �
 ![af_xdp](./img/af_xdp.png)
 디스크립터(descriptor) : 
 
-XSK는 RX링과 TX링이 있다. 각 링은 UMEM이라는 메모리 영역의 데이터 버퍼를 가리켜, 받거나 보내는 행동간에 복사할 필요가 없다.
+XSK는 RX링과 TX링이 있다. 각 링은 UMEM이라는 메모리 영역의 데이터 버퍼를 가리키는 디스크립터가 있다, 동일한 UMEM을 가리킬 수 있기 때문에, 받거나 보내는 행동간에 복사할 필요가 없다.
 
 UMEM은 `malloc`, `mmap`, `huge pages`등을 통해 할당되고, `XDP_UMEM_REG`로 커널에 등록된다. 이 또한 FILL과 COMPLETION링 두개가 존재한다. FILL링은 UMEM에 채울 수 있는 공간을 포인팅하고, COMLETION은 읽은 공간을 포인팅 해, 사용할 수 있는 공간임을 알려준다.
