@@ -135,5 +135,10 @@ XDP 프로그램의 XDP_REDIRECT를 사용하면, bpf_redirect_map() 함수로 �
 그리고 AF_XDP 소켓은 user space에 있는 application의 메모리 버퍼에 프레임을 보낼 수 있다.
 
 이 과정에 있어서 커널이 map에 저장된 프레임을 메모리에 쓰고, user space에 있는 application이 읽기 때문에, 문제가 생길 수 있다.(producer-comsumer problem)
-따라서 AF_XDP 소켓은 다음의 구조로 메모리를 공유한다.
+따라서 AF_XDP 소켓(XSK)은 다음의 구조로 메모리를 공유한다.
 ![af_xdp](./img/af_xdp.png)
+디스크립터(descriptor) : 
+
+XSK는 RX링과 TX링이 있다. 각 링은 UMEM이라는 공유하는 메모리 영역의 데이터 버퍼를 가리켜, 받거나 보내는 행동간에 복사할 필요가 없다.
+
+UMEM은 `malloc`, `mmap`, `huge pages`등을 통해 할당되고, `XDP_UMEM_REG`로 커널에 등록된다. 이 또한 FILL과 COMPLETION링 두개가 존재한다. FILL링은 UMEM에 채울 수 있는 공간을 포인팅하고, COMLETION은 읽은 공간을 포인팅 해, 사용할 수 있는 공간임을 알려준다.
