@@ -4,11 +4,11 @@
 xdp는 eXpress Data Path의 약자로, 위 사진에서 볼 수 있듯, 받은 패킷이 가장 먼저 거치는 과정이다.
 기존의 방식인 네트워크 스택을 경유하여 패킷을 처리하게 되면, 각 Layer를 거칠때 마다, Encapsulation/Decapsulation을 하고, 이 과정에서 copy를 하여 오버헤드가 발생한다.
 xdp로 패킷을 5가지 방법으로 처리할 수 있다.
-- XDP_ABORTED(0)  : 패킷을 DROP하고, XDP program 을 종료시킨다.
-- XDP_DROP(1)     : 패킷을 DROP한다.
-- XDP_PASS(2)     : 패킷을 Kernel network stack에서 처리하도록 한다.(보통의 과정)
-- XDP_TX(3)       : 패킷을 NIC으로 보낸다.
-- XDP_REDIRECT(4) : 패킷을 AF_XDP를 통해 user space로 보내거나, 다른 NIC으로 전송할 수 있다.
+- **XDP_ABORTED(0)**  : 패킷을 DROP하고, XDP program 을 종료시킨다.
+- **XDP_DROP(1)**     : 패킷을 DROP한다.
+- **XDP_PASS(2)**     : 패킷을 Kernel network stack에서 처리하도록 한다.(보통의 과정)
+- **XDP_TX(3)**       : 패킷을 NIC으로 보낸다.
+- **XDP_REDIRECT(4)** : 패킷을 AF_XDP를 통해 user space로 보내거나, 다른 NIC으로 전송할 수 있다.
 
 xdp를 이용하면 kernel network stack의 불필요한 copy과정을 생략하여 기존보다 빠르게 패킷을 처리할 수 있다.
 
