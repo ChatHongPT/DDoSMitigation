@@ -141,4 +141,14 @@ XDP 프로그램의 XDP_REDIRECT를 사용하면, bpf_redirect_map() 함수로 �
 
 XSK는 RX링과 TX링이 있다. 각 링은 UMEM이라는 메모리 영역의 데이터 버퍼를 가리키는 디스크립터가 있다, 동일한 UMEM을 가리킬 수 있기 때문에, 받거나 보내는 행동간에 복사할 필요가 없다.
 
-UMEM은 `malloc`, `mmap`, `huge pages`등을 통해 할당되고, `XDP_UMEM_REG`로 커널에 등록된다. 이 또한 FILL과 COMPLETION링 두개가 존재한다. FILL링은 UMEM에 채울 수 있는 공간을 포인팅하고, COMLETION은 읽은 공간을 포인팅 해, 사용할 수 있는 공간임을 알려준다.
+UMEM은 `malloc`, `mmap`, `huge pages`등을 통해 할당되고, `XDP_UMEM_REG`로 커널에 등록된다. 이 또한 FILL과 COMPLETION링 두개가 존재한다. FILL링은 UMEM에 채울 수 있는 공간의 주소를 나타내고, application이 kernel에게 사용할 수 있는 공간임을 알려준다. COMLETION은 kernel이 전송을 완료한 frame의 주소를 나타내어 user space에서 TX 또는 RX 용도로 사용할 수 있다. 따라서, FILL은 RX 완료됨을, COMPLETION은 TX가 완료됨을 뜻한다.
+
+위 과정은 UMEM에 존재하는 패킷의 소유권을 넘겨는 과정으로 위에서 언급한 문제를 해결한다.
+
+### Gotcha by RX-queue id binding
+AF_XDP는 한 개의 CPU 코어만 관여하지만, NIC은 수신되는 트래픽을 여러 CPU 코어로 분산시켜 네트워크 성능을 향상시키는 RSS(Receive Side Scaling)라는 기술을 사용한다. 따라서 모든 패킷에 관여하지 못할 수 있다.
+이 문제를 해결하기 위해서, 1. 패킷을 한 RX 큐로만 받게 하거나, 2. RX 큐들만큼 많은 AF_XDP 소켓을 만들어 모든 소켓에서 패킷을 수집하면 된다.
+여기서는 `ethtool -L <interface> combined 1`이 명령어를 통해 전자의 방법을 사용한다.
+
+위 내용을 통해 들어오는 모든 패킷을 AF_XDP로 네트워크 스택을 우회하여 user space로 가져와 네트워크 패킷의 빠른 처리를 할 수 있다.
+배운 내용을 점검하는 내용을 확인을 위해 ping request 패킷에 대해 응답하는 코드를 구현하고 실행한 결과다.
