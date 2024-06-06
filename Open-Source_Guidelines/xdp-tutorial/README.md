@@ -134,10 +134,10 @@ AF_XDP는 네트워크 스택을 거치지 않고(우회하여), 곧장 userspac
 XDP 프로그램의 XDP_REDIRECT를 사용하면, bpf_redirect_map() 함수로 받은 프레임을 다른 XDP 가능한 네트워크 장치로 보낼수 있다.
 그리고 AF_XDP 소켓은 user space에 있는 application의 메모리 버퍼에 프레임을 보낼 수 있다.
 
-이 과정에 있어서 커널이 map에 저장된 프레임을 메모리에 쓰고, user space에 있는 application이 읽기 때문에, 문제가 생길 수 있다.(producer-comsumer problem)
+이 과정에 있어서 커널이 map에 저장된 프레임을 메모리에 쓰고, user space에 있는 application이 읽기 때문에, 문제가 생길 수 있다.[(producer-comsumer problem)](https://fjvbn2003.tistory.com/309)
 따라서 AF_XDP 소켓(XSK)은 다음의 구조로 메모리를 공유한다.
 ![af_xdp](./img/af_xdp.png)
-디스크립터(descriptor) : 
+>디스크립터(descriptor) : 컴퓨터 시스템에서 특정 자원이나 객체를 식별하고 관리하기 위해 사용되는 메타데이터 구조체다. 파일, 소켓, 메모리 블록 등과 같은 자원을 효율적으로 다루기 위해 사용된다.
 
 XSK는 RX링과 TX링이 있다. 각 링은 UMEM이라는 메모리 영역의 데이터 버퍼를 가리키는 디스크립터가 있다, 동일한 UMEM을 가리킬 수 있기 때문에, 받거나 보내는 행동간에 복사할 필요가 없다.
 
