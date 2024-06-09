@@ -2,6 +2,8 @@ ELK Stack의 자세한 사용법 입니다.
 
 #### **docker-compose.yml**
 ```
+# 실행은 docker-compose up -d 밑에 설정파일들 작성하시고 실행하시면 됩니다.
+
 version: '3.8'
 
 services:
@@ -105,10 +107,6 @@ volumes:
   elasticsearch-data:
 
     driver: local
-```
-
-```
-docker-compose up -d
 ```
 
 GeoLite 데이터 베이스 다운 받으셔서 저 경로에 넣으시면 됩니다
