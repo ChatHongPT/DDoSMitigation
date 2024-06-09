@@ -118,9 +118,9 @@ https://dev.maxmind.com/geoip
 
 **경로**
 
-logstash/pipeline/logstash.conf
+<logstash/pipeline/logstash.conf>
 
-logstash/config/logstash.yml
+<logstash/config/logstash.yml>
 
 **logstash.conf**
 ```
@@ -206,7 +206,7 @@ xpack.monitoring.enabled: false
 
 **경로**
 
-elasticsearch/config/elasticsearch.yml
+<elasticsearch/config/elasticsearch.yml>
 
 **elasticsearch.yml**
 ```
@@ -249,7 +249,7 @@ ingest.geoip.downloader.enabled: true
 
 **경로**
 
-kibana/config/kibana.yml
+<kibana/config/kibana.yml>
 
 **kibana.yml**
 ```
