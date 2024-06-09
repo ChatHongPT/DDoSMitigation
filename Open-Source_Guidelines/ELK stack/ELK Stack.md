@@ -203,6 +203,7 @@ xpack.monitoring.enabled: false
 #### elasticsearch 설정
 
 **경로**
+
 elasticsearch/config/elasticsearch.yml
 
 **elasticsearch.yml**
@@ -245,6 +246,7 @@ ingest.geoip.downloader.enabled: true
 #### **Kibana 설정**
 
 **경로**
+
 kibana/config/kibana.yml
 
 **kibana.yml**
