@@ -14,12 +14,12 @@
 > 	패킷 처리(자동화)
 > 	XDP Socket, U Memory 구성
 ###### main (일부)
-![code](./Main_flow.jpg)
+![code](./img/Main_flow.jpg)
 ##### 🛠️프로그램 실행 
 - 참고
 	1. VM || Host Ubuntu 버전 22.04 LTS 이상 권장
 	2. Docker Container 구성 -> 공격 컨테이너, 방어용 컨테이너(XDP 프로그램 작동), 백앤드 컨테이너, Packet beat 컨테이너 or 포함된 컨테이너(수정 가능)
->1. Dockerfile 빌드, 컨테이너 생성
+>1. Dockerfile 빌드(docker build -t xdp-image .), 컨테이너 생성(docker run -itd --privileged --name xdp xdp-image), docker exec -it xdp bash
 >2. apt install linux-header-$(uname -r) 
 >3. 컴파일
 	clang -O2 -target bpf -o prog_kern.o -c prog_kern.c -g
@@ -27,7 +27,7 @@
 >4. 실행
 	./process
 
-![flow](./Process_load.jpg)
+![flow](./img/Process_load.jpg)
 
 ##### 🔍참고 자료
 
