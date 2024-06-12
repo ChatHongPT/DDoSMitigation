@@ -275,7 +275,7 @@ static void rx_and_process(struct xsk_socket_info *xsk_socket) {
         fds[0].events = POLLIN;
 
         while(thread) {
-                ret = poll(fds, nfds, -1);  //busy polling, thread = 프로그램의 유효성을 계속 검사 
+                ret = poll(fds, nfds, -1);  //thread = 프로그램의 유효성을 계속 검사 ,polling mode
                 if (ret <= 0 || ret > 1)
                         continue;
                 handle_receive_packets(xsk_socket); 
