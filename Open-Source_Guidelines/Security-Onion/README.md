@@ -1,4 +1,5 @@
 # Security Onion 오픈소스 가이드라인
+![soc.png](./img/soc.png)
 **Security Onion**:
   - 설명: 네트워크 보안 감시 및 인시던트 응답 플랫폼.
   - 기능 특징: 네트워크 트래픽 분석, 보안 이벤트 탐지, 로그 분석.
