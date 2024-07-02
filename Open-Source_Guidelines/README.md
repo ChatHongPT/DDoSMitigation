@@ -17,7 +17,9 @@
    - **설치 가이드**: 프로젝트의 공식 문서 또는 GitHub 페이지를 참조하여 설치.
 
 ## 3. [**bpftool**](https://github.com/libbpf/bpftool)
-   - 작성할 것  
+   - **설명**: BPF Map, BTF와 같은 BPF 정보들을 조회할 수 있는 도구.
+   - **특징**: 각 파라미터를 통해 BPF 관련 정보 조회 가능/실시간 BPF 프로그램 내 MAP 데이터 조회 가능.
+   - **설치 가이드**: GitHub 페이지를 참조하여 설치.
 
 ## 4. [**DPDK**](https://github.com/DPDK/dpdk)
    - 작성할 것  
