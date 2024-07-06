@@ -8,6 +8,19 @@
 #include <linux/tcp.h>
 #include <arpa/inet.h>
 
+struct record_rec {
+	__u64 total;
+    __u64 drop;
+	__u64 pass;
+};
+
+struct{
+        __uint(type, BPF_MAP_TYPE_LRU_HASH);
+        __type(key, __u32);
+        __type(value, struct record_rec);
+        __uint(max_entries, 1);
+} stats_show SEC(".maps");
+
 struct record {
 	__u64 rx_tcp_packets;
         __u64 tcp_data;
@@ -61,18 +74,41 @@ int process(struct xdp_md *ctx) {
 	struct ethhdr *eth = data;
 	if(eth+1>(struct ethhdr*)data_end)
 		return XDP_DROP;
+	struct record_rec stat_alloc;
+	stat_alloc.total = 0;
+	stat_alloc.drop = 0;
+	stat_alloc.pass = 0;
+	struct record_rec *stat = bpf_map_lookup_elem(&stats_show,&int_index);
+	if(!stat){
+		bpf_map_update_elem(&stats_show, &int_index, &stat_alloc, BPF_NOEXIST);
+	}
 	if(eth->h_proto != htons(ETH_P_IP)){
 		if(eth->h_proto == htons(ETH_P_ARP)){
 			__u32 *arp = bpf_map_lookup_elem(&arp_table, &con);
 			if(!arp){
+				if(!stat){stat = &stat_alloc;}
+				stat->total++;
+				stat->pass++;
 				bpf_map_update_elem(&arp_table, &con, &con,BPF_NOEXIST);
+				return XDP_PASS;
 			} else {
 				__sync_fetch_and_add(arp, 1);
-				if(*arp >=10)
+				if(*arp >=10){
+					if(!stat){stat = &stat_alloc;}
+
+					stat->total++;
+					stat->drop++;
 					return XDP_DROP;
+				}
+				if(!stat){stat = &stat_alloc;}
+				stat->total++;
+				stat->pass++;
 				return XDP_PASS;
 			}
 		}
+		if(!stat){stat = &stat_alloc;}
+		stat->total++;
+		stat->drop++;
 		return XDP_DROP;
 	}
 		
@@ -84,37 +120,60 @@ int process(struct xdp_md *ctx) {
 	struct record *value = bpf_map_lookup_elem(&ip_stats, &ip);
 	struct record recd;
 	int *detect_v = bpf_map_lookup_elem(&ban_ip,&ip);
-	if(detect_v)
+	if(detect_v){
+		if(!stat){stat = &stat_alloc;}
+		stat->total++;
+		stat->drop++;
 		return XDP_DROP;
-	
-	if(iph->saddr == iph->daddr)
+	}
+	if(iph->saddr == iph->daddr){
+		if(!stat){stat = &stat_alloc;}
+		stat->total++;
+		stat->drop++;
 		return XDP_DROP;
-	if(iph->protocol == IPPROTO_ICMP || iph->protocol == IPPROTO_UDP)
+	}
+	if(iph->protocol == IPPROTO_ICMP || iph->protocol == IPPROTO_UDP){
+		if(!stat){stat = &stat_alloc;}
+		stat->total++;
+		stat->drop++;
 		return XDP_DROP;
+	}
 	if(iph->protocol == IPPROTO_TCP){
-		//if(iph->saddr == 0x030011AC){ 만일 proxy 구현시 필요할 듯한 부분
-		//	return bpf_redirect_map(&xsk_map, int_index, 0);
-		//}
 		struct tcphdr *tcph = (data+sizeof(struct ethhdr) + (iph->ihl*4));
             	if(tcph+1>(struct tcphdr*)data_end)
                		return XDP_DROP;
-		if(tcph->rst) 
+		if(tcph->rst){
+			if(!stat){stat = &stat_alloc;}
+			stat->total++;
+			stat->drop++;
 			return XDP_DROP;
+		}
 		else
 		{
           		__u64 len_frame = (__u64)(ctx->data_end - ctx->data);
            		__u64 len_hdr = (__u64)(sizeof(struct ethhdr)+iph->ihl*4+ tcph->doff*4);
          		__u64 payload = (len_frame-len_hdr);
 			
-			if(payload > 1400)
+			if(payload > 1400){
+				if(!stat){stat = &stat_alloc;}
+				stat->total++;
+				stat->drop++;
 				return XDP_DROP;
+			}
 			if(!value){
                 	        recd.rx_tcp_packets = 1;
                 	        recd.tcp_data = payload;
 				recd.time = now;
 				bpf_map_update_elem(&ip_stats, &ip, &recd, BPF_NOEXIST);
-				if(tcph->syn) // First SYN Drop
+				if(tcph->syn){ // First SYN Drop
+					if(!stat){stat = &stat_alloc;}
+					stat->total++;
+					stat->drop++;
 					return XDP_DROP;
+				}
+				if(!stat){stat = &stat_alloc;}
+				stat->total++;
+				stat->pass++;
 				return bpf_redirect_map(&xsk_map, int_index, 0);
 
 			}
@@ -136,6 +195,10 @@ int process(struct xdp_md *ctx) {
                 		if(pps >= 6){
                         		bpf_map_update_elem(&ban_ip,&ip,&pps,BPF_NOEXIST);
                         		bpf_map_delete_elem(&ip_stats,&ip);
+					if(!stat){stat = &stat_alloc;}
+
+					stat->total++;
+					stat->drop++;
 					return XDP_DROP;
 				}
 				__u64 bps = (value->tcp_data/(off/1000000000));
@@ -149,14 +212,28 @@ int process(struct xdp_md *ctx) {
 				if(bps >= 2000){
 					bpf_map_update_elem(&ban_ip,&ip,&con,BPF_NOEXIST);
 					bpf_map_delete_elem(&ip_stats,&ip);
+					if(!stat){stat = &stat_alloc;}
+					stat->total++;
+					stat->drop++;
 					return XDP_DROP;
 				}
+				if(!stat){stat = &stat_alloc;}
+				stat->total++;
+				stat->pass++;
                 		return bpf_redirect_map(&xsk_map, int_index, 0);
 
 			}
+			if(!stat){stat = &stat_alloc;}
+
+			stat->total++;
+			stat->pass++;
 			return bpf_redirect_map(&xsk_map, int_index, 0);
 		}
 	}
+	if(!stat){stat = &stat_alloc;}
+
+	stat->total++;
+	stat->drop++;
 	return XDP_DROP;
 }
 
