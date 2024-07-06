@@ -332,12 +332,13 @@ void *send2packetbeat(void *arg) {
         service.sin_addr.s_addr = inet_addr(TARGET_IP);
 
         while (thread) {
-                read_map_data(buffer, BUFFER_SIZE);
+                /*read_map_data(buffer, BUFFER_SIZE);
                 if (sendto(sockfd, buffer, strlen(buffer), 0, (struct sockaddr *)&service, sizeof(service)) < 0) {
                         fprintf(stderr,"[!] Socket 'sendto' failed.. \n");
                         break;
                 }
                 printf("\n\t\t\t[O] Send data to Packet beat...\n");
+		*/
                 sleep(2);
         }
 
