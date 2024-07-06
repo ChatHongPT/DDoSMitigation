@@ -44,7 +44,7 @@
 #define BUFFER_SIZE 1400 
 
 //쓰레드 선언 & 프로세스 종료 알림 -> 쓰레드 종료 유도
-pthread_t tid1, tid2;
+pthread_t tid1, tid2, tid3;
 bool thread =true;
 
 //umem 선언
@@ -115,7 +115,7 @@ static struct xsk_socket_info *xsk_configure_socket(struct xsk_umem_info *umem, 
                 return NULL;
         }
         
-        const char *ifname = "eth0";
+        const char *ifname = "enp0s3";
         __u32 if_queue = 0; 
 
         xsk_info->umem = umem;
@@ -275,7 +275,7 @@ static void rx_and_process(struct xsk_socket_info *xsk_socket) {
         fds[0].events = POLLIN;
 
         while(thread) {
-                ret = poll(fds, nfds, -1);  //thread = 프로그램의 유효성을 계속 검사 ,polling mode
+                ret = poll(fds, nfds, -1);  //thread = 프로그램의 유효성을 계속 검사
                 if (ret <= 0 || ret > 1)
                         continue;
                 handle_receive_packets(xsk_socket); 
@@ -356,10 +356,32 @@ void *init_map(void *arg){
         }
         pthread_exit(NULL);
 }
-
+struct record_view {
+        __u64 total;
+        __u64 drop;
+        __u64 pass;
+};
+void *stat_view(void *arg){
+        int key = 0;
+	struct record_view value = {0};
+        int mapfd = (int)(intptr_t)arg;
+        while(thread){
+                sleep(1);
+		int result = bpf_map_lookup_elem(mapfd,&key,&value);
+                //struct record_view *show = bpf_map_lookup_elem(mapfd, &key, &value);
+		if(!result){
+			printf("");
+		
+		}
+                printf("+----------------------------------------------------------+\n");
+                printf("\t\t[Total] %lld, [Pass] %lld, [Drop] %lld\n",value.total,value.pass, value.drop);
+                printf("+----------------------------------------------------------+\n");
+        }
+        pthread_exit(NULL);
+}
 static void signal_int(int sig){
  
- 	const char dev[] = "eth0";
+ 	const char dev[] = "enp0s3";
         int ifidx = if_nametoindex(dev);
        	int err = unload(ifidx);
         if (err) {
@@ -375,7 +397,7 @@ int main(void){
 	char filename[] = "prog_kern.o";
 	char progname[] = "process";
 	char errmsg[1024];
-	const char dev[] = "eth0";
+	const char dev[] = "enp0s3";
 	
 	int err = 1,ret;
 	int ifidx = if_nametoindex(dev);
@@ -407,8 +429,8 @@ int main(void){
 		fprintf(stderr, "[!] Couldn't create xdp program.. \n >> %s \n",errmsg);
 		goto error;
 	}
-
-	err = xdp_program__attach(prog, ifidx, XDP_MODE_NATIVE, 0);
+	//XDP_MODE_NATIVE or XDP_MODE_SKB
+	err = xdp_program__attach(prog, ifidx, XDP_MODE_SKB, 0);
 	if (err) {
 		fprintf(stderr, "[!] Couldn't attach xdp program..\n");
 		goto error;
@@ -424,7 +446,13 @@ int main(void){
 
         }
 	
+        struct bpf_map *fmap = bpf_object__find_map_by_name(xdp_program__bpf_obj(prog), "stats_show");
+        int stats_map_fd = bpf_map__fd(fmap);
+        if (stats_map_fd < 0) {
+                fprintf(stderr, "> There is no xmap on program.. \n");
+                goto error;
 
+        }
         struct bpf_map *arp_map = bpf_object__find_map_by_name(xdp_program__bpf_obj(prog), "arp_table");
         int arp_map_fd = bpf_map__fd(arp_map);
         if (arp_map_fd < 0) {
@@ -435,8 +463,10 @@ int main(void){
 		goto error;
 	if(pthread_create(&tid2,NULL,send2packetbeat,NULL) != 0)
 		goto error;
+	if(pthread_create(&tid3,NULL,stat_view,(void *)(intptr_t)stats_map_fd) != 0)
+		goto error;
 	
-	fprintf(stdout, "\n\t\t\t>> Thread started <<\n"); //쓰레드 생성 2가지 1. ARP_TABLE reset 2. File beat에 정보 전송(이 부분은 여유가 있을 때만 채택, 아마 삭제할 예정)
+	fprintf(stdout, "\n\t\t\t>> Thread started <<\n"); //쓰레드 생성 3가지 1. ARP_TABLE reset 2. packet beat에 정보 전송(이 부분은 여유가 있을 때만 채택, 아마 삭제할 예정)
                                                 
         struct rlimit rlim = {RLIM_INFINITY, RLIM_INFINITY};
         if (setrlimit(RLIMIT_MEMLOCK, &rlim)) {
@@ -462,7 +492,13 @@ int main(void){
                 xsk_umem__delete(umem->umem);
                 goto error;
         }
-        fprintf(stdout, "\n\t\t\t>> Program started <<\n");
+	printf("     _____ _____    _    __  __   _   _  ___  _   _ _____ \n");
+	printf("    |_   _| ____|  / \\  |  \\/  | | \\ | |/ _ \\| \\ | | ____|\n");
+	printf("      | | |  _|   / _ \\ | |\\/| | |  \\| | | | |  \\| |  _|  \n");
+	printf("      | | | |___ / ___ \\| |  | | | |\\  | |_| | |\\  | |___ \n");
+	printf("      |_| |_____/_/   \\_\\_|  |_| |_| \\_|\\___/|_| \\_|_____|\n");
+
+	fprintf(stdout, "\n\t\t\t>> Program started <<\n");
 
         rx_and_process(xsk_socket);
 
