@@ -331,7 +331,7 @@ void *send2packetbeat(void *arg) {
         service.sin_port = htons(TARGET_PORT);
         service.sin_addr.s_addr = inet_addr(TARGET_IP);
 
-        while (thread) {
+        while (thread) { //실시간 XDP 서버 데이터 전송 알고리즘(선택사항)
                 /*read_map_data(buffer, BUFFER_SIZE);
                 if (sendto(sockfd, buffer, strlen(buffer), 0, (struct sockaddr *)&service, sizeof(service)) < 0) {
                         fprintf(stderr,"[!] Socket 'sendto' failed.. \n");
