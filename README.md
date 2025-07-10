@@ -1,5 +1,7 @@
 # 한국정보기술연구원 화이트햇 스쿨 2기 프로젝트
 
+![image](https://github.com/user-attachments/assets/72979001-6b06-4cfb-85f0-cd260c3f71f0)
+
 ## 프로젝트 활동 내역
 [Main Repository](https://github.com/DDoSMitigation/main)
 
